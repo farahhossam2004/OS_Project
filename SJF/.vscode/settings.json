@@ -1,0 +1,23 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "d:\\JavaFX\\lib\\javafx.base.jar",
+        "d:\\JavaFX\\lib\\javafx.controls.jar",
+        "d:\\JavaFX\\lib\\javafx.fxml.jar",
+        "d:\\JavaFX\\lib\\javafx.graphics.jar",
+        "d:\\JavaFX\\lib\\javafx.media.jar",
+        "d:\\JavaFX\\lib\\javafx.swing.jar",
+        "d:\\JavaFX\\lib\\javafx.web.jar",
+        "d:\\JavaFX\\lib\\javafx-swt.jar",
+        "c:\\Users\\farah\\Downloads\\openjfx-22_windows-x64_bin-sdk\\javafx-sdk-22\\lib\\javafx.web.jar",
+        "c:\\Users\\farah\\Downloads\\openjfx-22_windows-x64_bin-sdk\\javafx-sdk-22\\lib\\javafx.swing.jar",
+        "c:\\Users\\farah\\Downloads\\openjfx-22_windows-x64_bin-sdk\\javafx-sdk-22\\lib\\javafx.media.jar",
+        "c:\\Users\\farah\\Downloads\\openjfx-22_windows-x64_bin-sdk\\javafx-sdk-22\\lib\\javafx.graphics.jar",
+        "c:\\Users\\farah\\Downloads\\openjfx-22_windows-x64_bin-sdk\\javafx-sdk-22\\lib\\javafx.fxml.jar",
+        "c:\\Users\\farah\\Downloads\\openjfx-22_windows-x64_bin-sdk\\javafx-sdk-22\\lib\\javafx.controls.jar",
+        "c:\\Users\\farah\\Downloads\\openjfx-22_windows-x64_bin-sdk\\javafx-sdk-22\\lib\\javafx.base.jar",
+        "c:\\Users\\farah\\Downloads\\openjfx-22_windows-x64_bin-sdk\\javafx-sdk-22\\lib\\javafx-swt.jar"
+    ]
+}
