@@ -22,6 +22,9 @@ public class HomeController {
     private Parent root;
     
     @FXML
+    private Label NoOfProcess;
+
+    @FXML
     private Button addBtn;
 
     @FXML
@@ -47,6 +50,7 @@ public class HomeController {
                 if(Functions.readPositive(Double.parseDouble(burstField.getText())) != -1)
                 {
                     ProcessManagement.addProcess(Double.parseDouble(burstField.getText()) , Double.parseDouble(arrivalField.getText()));
+                    NoOfProcess.setText(String.valueOf(ProcessManagement.getAllProcesses().size()));
                     System.out.println("Added");
                     arrivalField.clear();
                     burstField.clear();
