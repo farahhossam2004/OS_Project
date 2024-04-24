@@ -2,18 +2,21 @@ public class Process {
     
     private final int id;
     private static int ProcessCounter = 0;
-    private boolean isRunning = false;
     double arrival_time;
     double burst_time;
     double waiting_time;
     double turnaround_time;
     double response_time;
+    double completion_time;
+    double start_time = -1;
+    double originalBurstTime;
     
     Process(double arrival_time, double burst_time)
     {
         this.arrival_time = arrival_time;
         this.burst_time = burst_time;
         this.id = ++ProcessCounter;
+        this.originalBurstTime = burst_time;
     }
 
     // Setters
@@ -37,11 +40,6 @@ public class Process {
         this.response_time = responsetime;
     }    
 
-    public void setIsRunning(boolean isRunning)
-    {
-        this.isRunning = isRunning;
-    }
-    
     public void setArrivalTime(double arrivaltime){
         this.arrival_time = arrivaltime;
     }
@@ -49,6 +47,15 @@ public class Process {
     public void setBurstTime(double bursttime){
         this.burst_time=bursttime;
     }
+
+    public void setCompletionTime(double completiontime){
+        this.completion_time = completiontime;
+    }
+
+    public void setStartTime(double starttime){
+        this.start_time = starttime;
+    }
+
     // Getters
     public int getID()
     {
@@ -70,11 +77,6 @@ public class Process {
         return this.response_time;
     }
 
-    public boolean getIsRunning()
-    {
-        return this.isRunning;
-    }
-
     public double getBurstTime(){
         return this.burst_time;
     }
@@ -82,4 +84,25 @@ public class Process {
     public double getArrivalTime(){
         return this.arrival_time;
     }
+
+    public double getCompletionTime()
+    {
+        return this.completion_time;
+    }
+
+    public double getStartTime()
+    {
+        return this.start_time;
+    }
+
+    public double getOriginalBurstTime()
+    {
+        return this.originalBurstTime;
+    }
+
+    public int getProcessCounter()
+    { 
+        return this.getProcessCounter();
+    }
+
 }

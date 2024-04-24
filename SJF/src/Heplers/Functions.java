@@ -1,47 +1,36 @@
 package Heplers;
 
-import java.util.Scanner;
-
 public class Functions {
 
-        
-    static Scanner input = new Scanner(System.in);
 
-    // Read Positive Integer Or Zero
-    public static double readPositiveOrZero(){
-        double n = 0.0;
-        while (true) {
+    // Read Positive Double Or Zero
+    public static double readPositiveOrZero(double value) {
             try {
-                n = input.nextInt();
-                if(n>=0){
-                    return n;
+                if(value >= 0){
+                    return value;
                 } else {
                     System.out.println("Please enter a positive double or zero: ");
-                    input.nextLine();
+                    return -1;
                 }
             } catch (Exception e) {
                 System.out.println("Enter a positive double or zero: ");
-                input.nextLine();
+                return -1;
             }
-        }
     }
 
-    // Read Positive Integer > 0
-    public static double readPositive(){
-        double n = 0.0;
-        while (true) {
-            try {
-                n = input.nextInt();
-                if(n>0){
-                    return n;
-                } else {
-                    System.out.println("Please enter a positive double: ");
-                    input.nextLine();
-                }
-            } catch (Exception e) {
-                System.out.println("Enter a positive double: ");
-                input.nextLine();
+    // Read Positive Double > 0
+
+    public static double readPositive(double value) {
+        try {
+            if(value > 0){
+                return value;
+            } else {
+                System.out.println("Please enter a positive double: ");
+                return -1;
             }
+        } catch (Exception e) {
+            System.out.println("Enter a positive double: ");
+            return -1;
         }
-    }
+}
 }
