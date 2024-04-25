@@ -136,11 +136,53 @@ public class ProcessManagement {
 
         // Average waiting Time Function
 
+        public static double calculateAverageWaiting(){
+            ArrayList<Process> processes = getAllProcesses();
+            double totalWaitingTime=0;
+
+            for(Process process : processes){
+                totalWaitingTime += process.getWaitingTime();
+            }
+
+            return totalWaitingTime / processes.size();
+        }
 
         // Average Turnaround Time Function
 
+        public static double calculateAverageTurnaroundTime(){
+            ArrayList<Process> processes = getAllProcesses();
+            double totalTurnaroundTime=0;
+            for(Process process : processes){
+                totalTurnaroundTime += process.getTurnaroundTime();
+            }
+            return  totalTurnaroundTime / processes.size();
+        }
 
         // Average Response Time Function
+
+        public static double calculateAverageResponseTime(){
+            ArrayList<Process> processes = getAllProcesses();
+            double totalResponseTime=0;
+            for(Process process : processes){
+                totalResponseTime += process.getResponseTime();
+            }
+            return  totalResponseTime / processes.size();
+        }
+
+
+        //==========================================================
+        public static void Calculation(){
+            ArrayList<Process>  ProcessList = getAllProcesses();
+
+            for(Process  p : ProcessList) {
+                p.setResponseTime(responseTime(p.getID()));
+                p.setTurnaroundTime(turnaroundtime(p.getID()));
+                p.setWaitingTime(waitingTime(p.getID()));
+            }
+        }
     //================================================================
 
 }
+
+
+
