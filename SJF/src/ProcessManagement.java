@@ -93,6 +93,8 @@ public class ProcessManagement {
         }
     }
 
+//================================================================
+// fn for Calculation scenes
     // Waiting time function
     public static double waitingTime(int id)
     {
@@ -131,7 +133,7 @@ public class ProcessManagement {
         return -1;
     }
 
-    //=================================================================
+//=================================================================
         //Rania Task 
 
         // Average waiting Time Function
@@ -170,7 +172,8 @@ public class ProcessManagement {
         }
 
 
-        //==========================================================
+//==========================================================
+
         public static void Calculation(){
             ArrayList<Process>  ProcessList = getAllProcesses();
 
@@ -180,7 +183,8 @@ public class ProcessManagement {
                 p.setWaitingTime(waitingTime(p.getID()));
             }
         }
-    //================================================================
+
+//================================================================
 
 }
 

@@ -1,4 +1,4 @@
-import javafx.application.Application;
+ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,7 +16,8 @@ public class Main extends Application{
         stage.setScene(scene);
         stage.show();
     }
-} 
+}  
+
 
 
 

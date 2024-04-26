@@ -8,6 +8,17 @@
         "e:\\javafx-sdk-22\\lib\\javafx.media.jar",
         "e:\\javafx-sdk-22\\lib\\javafx.swing.jar",
         "e:\\javafx-sdk-22\\lib\\javafx.web.jar",
-        "e:\\javafx-sdk-22\\lib\\javafx-swt.jar"
+        "e:\\javafx-sdk-22\\lib\\javafx-swt.jar",
+        "e:\\jfreechart-1.0.19\\lib\\hamcrest-core-1.3.jar",
+        "e:\\jfreechart-1.0.19\\lib\\jcommon-1.0.23.jar",
+        "e:\\jfreechart-1.0.19\\lib\\jfreechart-1.0.19.jar",
+        "e:\\jfreechart-1.0.19\\lib\\jfreechart-1.0.19-experimental.jar",
+        "e:\\jfreechart-1.0.19\\lib\\jfreechart-1.0.19-swt.jar",
+        "e:\\jfreechart-1.0.19\\lib\\jfreesvg-2.0.jar",
+        "e:\\jfreechart-1.0.19\\lib\\junit-4.11.jar",
+        "e:\\jfreechart-1.0.19\\lib\\orsoncharts-1.4-eval-nofx.jar",
+        "e:\\jfreechart-1.0.19\\lib\\orsonpdf-1.6-eval.jar",
+        "e:\\jfreechart-1.0.19\\lib\\servlet.jar",
+        "e:\\jfreechart-1.0.19\\lib\\swtgraphics2d.jar"
     ]
 }
