@@ -50,6 +50,10 @@ public class CalculationController implements Initializable{
         responseLabel.setText(String.valueOf(ProcessManagement.responseTime(processID)));
         turnaroundLabel.setText(String.valueOf(ProcessManagement.turnaroundtime(processID)));
         waitingLabel.setText(String.valueOf(ProcessManagement.waitingTime(processID)));
+
+    }
+    public void ShowGanttChart (ActionEvent e){
+         GanttChart.DrawGanttChart(ProcessManagement.getAllProcesses());
     }
 
     public void BackToScene(ActionEvent e) throws IOException
