@@ -19,7 +19,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="268.0" text="TurnAround:">
+      <Label layoutX="14.0" layoutY="268.0" text="TurnAround Time :">
          <font>
             <Font size="24.0" />
          </font>
@@ -30,14 +30,14 @@
          </font>
       </Label>
       <Label layoutX="206.0" layoutY="218.0" />
-      <Label layoutX="14.0" layoutY="326.0" text="Response Time :">
+      <Label layoutX="14.0" layoutY="316.0" text="Response Time :">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-2.0" prefHeight="53.0" prefWidth="600.0" text="Calculation Scene">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-2.0" prefHeight="63.0" prefWidth="600.0" text="Calculation Scene" textFill="#2e8eb1">
          <font>
-            <Font size="28.0" />
+            <Font name="System Bold Italic" size="28.0" />
          </font>
       </Label>
       <Label fx:id="waitingLabel" layoutX="186.0" layoutY="216.0" text="No Process Choosed Yet">
@@ -45,17 +45,22 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Label fx:id="turnaroundLabel" layoutX="173.0" layoutY="275.0" text="No Process Choosed Yet">
+      <Label fx:id="turnaroundLabel" layoutX="219.0" layoutY="275.0" text="No Process Choosed Yet">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label fx:id="responseLabel" layoutX="206.0" layoutY="333.0" text="No Process Choosed Yet">
+      <Label fx:id="responseLabel" layoutX="206.0" layoutY="323.0" text="No Process Choosed Yet">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Button layoutX="501.0" layoutY="349.0" mnemonicParsing="false" onAction="#BackToScene" text="Back">
+      <Button layoutX="319.0" layoutY="350.0" mnemonicParsing="false" onAction="#BackToScene" prefHeight="6.0" prefWidth="80.0" text="Back">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="405.0" layoutY="350.0" mnemonicParsing="false" onAction="#ShowGanttChart" prefHeight="39.0" prefWidth="181.0" text="Show Gantt Chart">
          <font>
             <Font size="18.0" />
          </font>

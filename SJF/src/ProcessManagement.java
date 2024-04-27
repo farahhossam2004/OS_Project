@@ -25,6 +25,12 @@ public class ProcessManagement {
         return processArray;
     }
 
+    //------------Get Switch Array-------------------
+    public static ArrayList<Switch> getAllSwitch()
+    {
+        return Switcharray;
+    }
+
     //---------------Add Process---------------------
 
     public static void addProcess(double burst, double arrival)
@@ -37,13 +43,15 @@ public class ProcessManagement {
     public static void serve()
     {
         ArrayList<Process> processes = getAllProcesses();
-        ArrayList<Process> readyProcesses = new ArrayList<>();
+        ArrayList<Process> readyProcesses = new ArrayList<>(); // array of arrived processes
 
         int servedProcesses = 0;
         double currentSecond = 0;
+        Process lastProcess = null;
 
+        // loop untill serving all the processes
         while(servedProcesses < processes.size())
-        {   
+        {  
             // Add all the processes that have arrived in readyProcesses Array
             for(Process process : processes)
             {
@@ -53,9 +61,12 @@ public class ProcessManagement {
                 }
             }
 
+            // check if there any processes arrived 
             if(!readyProcesses.isEmpty())
             {
-                Process shortestProcess = readyProcesses.get(0);
+                Process shortestProcess = readyProcesses.get(0); // intialize shortest process
+
+                // loop through arrived processes and select the process that has shortest burst time 
                 for(Process process : readyProcesses)
                 {
                     if(process.getBurstTime() < shortestProcess.getBurstTime())
@@ -64,6 +75,11 @@ public class ProcessManagement {
                     }
                 }
 
+                // for the switch array -> intialize last process with shortest process at time = 0
+                if(currentSecond == 0)
+                    lastProcess = shortestProcess; 
+
+                // loop to set the start time "in the original process array" of each process if it is not set before 
                 for(Process p : processArray)
                 {
                     if(p.getID() == shortestProcess.getID())
@@ -74,19 +90,45 @@ public class ProcessManagement {
                         }
                     }
                 }
+
+                // minus 1 second from the burst time of shortest process " process being served "
                 shortestProcess.setBurstTime(shortestProcess.getBurstTime() - 1);
-            
+                
+                // SWITCH ARRAY -> check if there a gap between two processes and the last process is null 
+                if(lastProcess == null && shortestProcess !=null)
+                {
+                    Switcharray.add(new Switch(currentSecond, null, shortestProcess));
+                    lastProcess = shortestProcess;                
+                }
+                // else if there is no gap between the two processes and there is switch happens between them 
+                else if(lastProcess != null && shortestProcess != null && lastProcess.getID() != shortestProcess.getID() )
+                {
+                    Switcharray.add(new Switch(currentSecond, lastProcess, shortestProcess));
+                    lastProcess = shortestProcess;
+                }
+
+                // if the process served completely -> burst time = 0
                 if(shortestProcess.getBurstTime() <= 0)
                 {
                     for(Process p : processArray)
                     {
                         if(p.getID() == shortestProcess.getID())
                         {
-                            p.setCompletionTime(currentSecond + 1);
+                            p.setCompletionTime(currentSecond + 1); // set when the process is totally completed
                         }
                     }
+
                     readyProcesses.remove(shortestProcess);
                     servedProcesses++;
+                }
+            }
+            else
+            {
+                // if there is no ready procesess ad last process is not null 
+                if(lastProcess != null)
+                {
+                    Switcharray.add(new Switch(currentSecond, lastProcess, null));
+                    lastProcess = null;
                 }
             }
             currentSecond++;
@@ -187,6 +229,7 @@ public class ProcessManagement {
 //================================================================
 
 }
+
 
 
 
