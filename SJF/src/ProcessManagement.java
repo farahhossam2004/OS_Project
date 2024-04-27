@@ -75,7 +75,7 @@ public class ProcessManagement {
                     }
                 }
                 shortestProcess.setBurstTime(shortestProcess.getBurstTime() - 1);
-
+            
                 if(shortestProcess.getBurstTime() <= 0)
                 {
                     for(Process p : processArray)
