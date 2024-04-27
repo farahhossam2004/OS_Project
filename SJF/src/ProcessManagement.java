@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class ProcessManagement {
 
     private static ArrayList<Process> processArray = new ArrayList<>();
-
+    private static ArrayList<Switch> Switcharray = new ArrayList<>();
 
     // -----------Delete Process-----------------
     public static int deleteProcess(int id)

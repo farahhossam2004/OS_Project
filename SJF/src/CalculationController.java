@@ -31,7 +31,6 @@ public class CalculationController implements Initializable{
     @FXML
     Label waitingLabel;
 
-    
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -53,7 +52,7 @@ public class CalculationController implements Initializable{
 
     }
     public void ShowGanttChart (ActionEvent e){
-         GanttChart.DrawGanttChart(ProcessManagement.getAllProcesses());
+        GanttChart.DrawGanttChart(ProcessManagement.getAllProcesses());
     }
 
     public void BackToScene(ActionEvent e) throws IOException
