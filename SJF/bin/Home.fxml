@@ -6,16 +6,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="402.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HomeController">
    <children>
-      <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" layoutY="14.0" prefHeight="64.0" prefWidth="600.0" text="Home Page" textFill="#429fec">
+      <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" layoutY="14.0" prefHeight="64.0" prefWidth="600.0" text="Home Page" textFill="#2b76b4">
          <font>
-            <Font size="43.0" />
+            <Font name="System Bold Italic" size="43.0" />
          </font>
       </Label>
-      <TextField fx:id="burstField" layoutX="177.0" layoutY="187.0" prefHeight="26.0" prefWidth="184.0" />
-      <TextField fx:id="arrivalField" layoutX="177.0" layoutY="243.0" prefHeight="26.0" prefWidth="184.0" />
+      <TextField fx:id="burstField" layoutX="191.0" layoutY="188.0" prefHeight="26.0" prefWidth="184.0" />
+      <TextField fx:id="arrivalField" layoutX="191.0" layoutY="243.0" prefHeight="26.0" prefWidth="184.0" />
       <Label layoutX="28.0" layoutY="177.0" text="Burst_Time">
          <font>
             <Font name="System Bold Italic" size="25.0" />
@@ -23,12 +22,12 @@
       </Label>
       <Label layoutX="26.0" layoutY="239.0" text="Arriving_time">
          <font>
-            <Font size="23.0" />
+            <Font name="System Bold Italic" size="23.0" />
          </font>
       </Label>
       <Label layoutX="14.0" layoutY="106.0" text="Add Process Data :">
          <font>
-            <Font size="28.0" />
+            <Font name="Calisto MT" size="30.0" />
          </font>
       </Label>
       <Button fx:id="nextBtn" layoutX="509.0" layoutY="349.0" mnemonicParsing="false" onAction="#switchToScene" text="Next ">
@@ -36,10 +35,20 @@
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="addBtn" layoutX="248.0" layoutY="292.0" mnemonicParsing="false" onAction="#addProcesss" text="Add ">
+      <Button fx:id="addBtn" layoutX="260.0" layoutY="299.0" mnemonicParsing="false" onAction="#addProcesss" prefHeight="30.0" prefWidth="79.0" text="Add ">
          <font>
-            <Font size="15.0" />
+            <Font size="14.0" />
          </font>
       </Button>
+      <Label layoutX="14.0" layoutY="360.0" text="No Of Process : ">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="NoOfProcess" layoutX="158.0" layoutY="360.0" prefHeight="26.0" prefWidth="58.0" text="0">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
