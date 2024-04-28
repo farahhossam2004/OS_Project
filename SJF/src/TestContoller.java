@@ -24,7 +24,7 @@ public class TestContoller {
             processes.add(p3);
             processes.add(p4);
 
-            GanttChart.DrawGanttChart(processes);
+            //GanttChart.DrawGanttChart(processes);
         }
     }
 

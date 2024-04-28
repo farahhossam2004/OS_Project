@@ -10,7 +10,8 @@ public class Process {
     double completion_time;
     double start_time = -1;
     double originalBurstTime;
-    
+    double startClock ;
+    double endClock ;
     Process(double arrival_time, double burst_time)
     {
         this.arrival_time = arrival_time;
@@ -28,6 +29,18 @@ public class Process {
     public void setWaitingTime(double waitingtime)
     {
         this.waiting_time = waitingtime;
+    }
+    public void setStartClock (double startClock){
+        this.startClock = startClock ;
+    }
+    public void setEndClock (double endClock){
+        this.endClock = endClock ;
+    }
+    public double getStartClock (){
+        return this.startClock ;
+    }
+    public double getEndClock (){
+        return this.endClock ;
     }
 
     public void setTurnaroundTime(double turnaroundtime)
