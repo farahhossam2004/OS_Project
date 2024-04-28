@@ -31,6 +31,15 @@ public class CalculationController implements Initializable{
     @FXML
     Label waitingLabel;
 
+    @FXML
+    private Label avgResponse;
+
+    @FXML
+    private Label avgTurnaround;
+
+    @FXML
+    private Label avgWaitingLabel;
+
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -39,6 +48,9 @@ public class CalculationController implements Initializable{
         {
             processChoiceBox.getItems().add(process.getID());
         }
+        avgWaitingLabel.setText(String.valueOf(ProcessManagement.calculateAverageWaiting()));
+        avgTurnaround.setText(String.valueOf(ProcessManagement.calculateAverageTurnaroundTime()));
+        avgResponse.setText(String.valueOf(ProcessManagement.calculateAverageResponseTime()));
         processChoiceBox.setOnAction(this::calculateTime);
     }
 
