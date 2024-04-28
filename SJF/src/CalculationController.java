@@ -52,7 +52,7 @@ public class CalculationController implements Initializable{
 
     }
     public void ShowGanttChart (ActionEvent e){
-        GanttChart.DrawGanttChart(ProcessManagement.getAllProcesses());
+        GanttChart.DrawGanttChart(ProcessManagement.getAllProcesses() , ProcessManagement.getAllSwitch());
     }
 
     public void BackToScene(ActionEvent e) throws IOException

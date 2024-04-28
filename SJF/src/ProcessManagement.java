@@ -87,6 +87,8 @@ public class ProcessManagement {
                         if(p.getStartTime() == -1)
                         {
                             p.setStartTime(currentSecond);
+                            p.setStartClock(currentSecond);
+
                         }
                     }
                 }
@@ -94,17 +96,21 @@ public class ProcessManagement {
                 // minus 1 second from the burst time of shortest process " process being served "
                 shortestProcess.setBurstTime(shortestProcess.getBurstTime() - 1);
                 
-                // SWITCH ARRAY -> check if there a gap between two processes and the last process is null 
+                // SWITCH ARRAY -> check if there is gap between two processes and the last process is null
                 if(lastProcess == null && shortestProcess !=null)
                 {
                     Switcharray.add(new Switch(currentSecond, null, shortestProcess));
-                    lastProcess = shortestProcess;                
+                    lastProcess = shortestProcess;
+                    shortestProcess.setStartClock(currentSecond);
                 }
                 // else if there is no gap between the two processes and there is switch happens between them 
                 else if(lastProcess != null && shortestProcess != null && lastProcess.getID() != shortestProcess.getID() )
                 {
                     Switcharray.add(new Switch(currentSecond, lastProcess, shortestProcess));
+                    lastProcess.setEndClock(shortestProcess.getStartClock());
                     lastProcess = shortestProcess;
+                    shortestProcess.setStartClock(currentSecond);
+
                 }
 
                 // if the process served completely -> burst time = 0
@@ -115,6 +121,7 @@ public class ProcessManagement {
                         if(p.getID() == shortestProcess.getID())
                         {
                             p.setCompletionTime(currentSecond + 1); // set when the process is totally completed
+                            p.setEndClock(p.completion_time);
                         }
                     }
 
@@ -127,8 +134,10 @@ public class ProcessManagement {
                 // if there is no ready procesess ad last process is not null 
                 if(lastProcess != null)
                 {
+                    lastProcess.setEndClock(currentSecond); // Set endClock for the last process
                     Switcharray.add(new Switch(currentSecond, lastProcess, null));
                     lastProcess = null;
+
                 }
             }
             currentSecond++;
