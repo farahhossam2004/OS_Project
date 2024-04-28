@@ -47,19 +47,49 @@ public class GanttChart {
 
             //checking if process arrived and served once it's arrived if it's done we serve the process until it's switch time
             for (int j = 0 ; j < switches.size() ; j ++) {
-                if (switches.get(j).getNextProcess() == null){
-                    theGreatestTurnaroundTime = ProcessManagement.turnaroundtime(processes.get(i).getID()) + processes.get(i).getArrivalTime() ;
-                }
-                if (switches.get(j).getPrevProcess() != null) {
-                    if (ProcessManagement.responseTime(processes.get(i).getID()) == 0 && switches.get(i).previousProcess.getID() == processes.get(i).getID()) {
-                        levelOneStart = (int) processes.get(i).getArrivalTime();
-                        levelOneEnd = (int) switches.get(i).switchtime;
+              if (switches.get(j).getPrevProcess() != null) {
+
+                    //handling boundary conditions and null pointer exception
+                    try {
+                        if (switches.get(j).getPrevProcess() == null){
+                            if (ProcessManagement.responseTime(processes.get(j).getID()) == 0 && switches.get(j).getPrevProcess().getID() == processes.get(j).getID()) {
+                                levelOneStart = (int) processes.get(j).getArrivalTime();
+                                levelOneEnd = (int) switches.get(j).switchtime;
+                            }
+                       }
+                        else {
+                            try {
+                                if (switches.get(j).getPrevProcess() != null) {
+                                    if (ProcessManagement.responseTime(processes.get(i).getID()) == 0 && switches.get(i).getPrevProcess().getID() == processes.get(i).getID()) {
+                                        levelOneStart = (int) processes.get(i).getArrivalTime();
+                                        levelOneEnd = (int) switches.get(i).switchtime;
+                                    }
+                                }
+                            }
+                            catch (NullPointerException e) {
+                                if (ProcessManagement.responseTime(processes.get(j).getID()) == 0 && switches.get(j).getPrevProcess().getID() == processes.get(j).getID()) {
+                                    levelOneStart = (int) processes.get(i).getArrivalTime();
+                                    levelOneEnd = (int) switches.get(i).switchtime;
+                                }
+                            }
+                        }
+                    }
+                    catch (IndexOutOfBoundsException e) {
+                        if (ProcessManagement.responseTime(processes.get(i).getID()) == 0 && switches.get(i).getPrevProcess().getID() == processes.get(i).getID()) {
+                            levelOneStart = (int) processes.get(i).getArrivalTime();
+                            levelOneEnd = (int) switches.get(i).switchtime;
+                        }
                     }
 
+
                 }
+              else if (switches.get(j).getPrevProcess() == null){
+                  theGreatestTurnaroundTime = ProcessManagement.turnaroundtime(processes.get(i).getID()) + 15;
+              }
+
                 else {
                     levelOneStart = (int) processes.get(i).getArrivalTime() ;
-                    levelOneEnd = levelOneStart + 1 ;
+                    levelOneEnd = levelOneStart  ;
                 }
             }
 
