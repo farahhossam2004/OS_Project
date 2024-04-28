@@ -84,6 +84,7 @@ public class HomeController {
         if(!ProcessManagement.getAllProcesses().isEmpty())
         {
             ProcessManagement.serve();
+            ProcessManagement.Calculation();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("./CalculationScene.fxml"));
             root = loader.load();
             stage = (Stage)((Node)e.getSource()).getScene().getWindow();
