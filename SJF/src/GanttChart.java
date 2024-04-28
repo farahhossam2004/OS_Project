@@ -46,17 +46,23 @@ public class GanttChart {
 
 
             //checking if process arrived and served once it's arrived if it's done we serve the process until it's switch time
-            if (switches.get(i).getPrevProcess() != null) {
-                if (ProcessManagement.responseTime(processes.get(i).getID()) == 0 && switches.get(i).previousProcess.getID() == processes.get(i).getID()){
-                    levelOneStart = (int) processes.get(i).getArrivalTime() ;
-                    levelOneEnd = (int) switches.get(i).switchtime ;
+            for (int j = 0 ; j < switches.size() ; j ++) {
+                if (switches.get(j).getNextProcess() == null){
+                    theGreatestTurnaroundTime = ProcessManagement.turnaroundtime(processes.get(i).getID()) + processes.get(i).getArrivalTime() ;
                 }
+                if (switches.get(j).getPrevProcess() != null) {
+                    if (ProcessManagement.responseTime(processes.get(i).getID()) == 0 && switches.get(i).previousProcess.getID() == processes.get(i).getID()) {
+                        levelOneStart = (int) processes.get(i).getArrivalTime();
+                        levelOneEnd = (int) switches.get(i).switchtime;
+                    }
 
+                }
+                else {
+                    levelOneStart = (int) processes.get(i).getArrivalTime() ;
+                    levelOneEnd = levelOneStart + 1 ;
+                }
             }
-            else {
-                levelOneStart = (int) processes.get(i).getArrivalTime() ;
-                levelOneEnd = levelOneStart + 1 ;
-            }
+
 
 
 
