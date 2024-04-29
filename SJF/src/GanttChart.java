@@ -77,9 +77,22 @@ public class GanttChart {
                         }
                     }
                     catch (IndexOutOfBoundsException e) {
-                        if (ProcessManagement.responseTime(processes.get(i).getID()) == 0 && switches.get(i).getPrevProcess().getID() == processes.get(i).getID()) {
-                            levelOneStart = (int) processes.get(i).getArrivalTime();
-                            levelOneEnd = (int) switches.get(i).switchtime;
+                        try {
+                            if (switches.get(i).getPrevProcess() != null) {
+                                if (ProcessManagement.responseTime(processes.get(j).getID()) == 0 && switches.get(j).getPrevProcess().getID() == processes.get(j).getID()) {
+                                    levelOneStart = (int) processes.get(j).getArrivalTime();
+                                    levelOneEnd = (int) switches.get(j).switchtime;
+                                }
+                            }
+                        }
+                        catch (IndexOutOfBoundsException ee){
+                            if (switches.get(i - 1).getPrevProcess() != null) {
+                                if (ProcessManagement.responseTime(processes.get(i - 1).getID()) == 0 && switches.get(i - 1).getPrevProcess().getID() == processes.get(i - 1).getID()) {
+                                    levelOneStart = (int) processes.get(i - 1).getArrivalTime();
+                                    levelOneEnd = (int) switches.get(i - 1).switchtime;
+                                    theGreatestTurnaroundTime = ProcessManagement.turnaroundtime(processes.get(i).getID()) + 15;
+                                }
+                            }
                         }
                     }
 
