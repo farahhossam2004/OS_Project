@@ -12,7 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-
 public class CalculationController implements Initializable{
 
     private Stage stage;
@@ -64,7 +63,7 @@ public class CalculationController implements Initializable{
 
     }
     public void ShowGanttChart (ActionEvent e){
-        GanttChart.DrawGanttChart(ProcessManagement.getAllProcesses() , ProcessManagement.getAllSwitch());
+        GanttChart.DrawGanttChart();
     }
 
     public void BackToScene(ActionEvent e) throws IOException

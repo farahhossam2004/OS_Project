@@ -16,8 +16,10 @@ import java.awt.*;
 
 public class GanttChart {
 
-    public static void DrawGanttChart (List<Process> processes , List<Switch> switches ) {
+    public static void DrawGanttChart () {
 
+        List<Process> processes = ProcessManagement.getAllProcesses();
+        List<Switch> switches  = ProcessManagement.getAllSwitch();
         // Create a task series for each level
         TaskSeries level1Series = new TaskSeries("Process execution time");
 
@@ -47,7 +49,7 @@ public class GanttChart {
 
             //checking if process arrived and served once it's arrived if it's done we serve the process until it's switch time
             for (int j = 0 ; j < switches.size() ; j ++) {
-              if (switches.get(j).getPrevProcess() != null) {
+                if (switches.get(j).getPrevProcess() != null) {
 
                     //handling boundary conditions and null pointer exception
                     try {
@@ -56,7 +58,7 @@ public class GanttChart {
                                 levelOneStart = (int) processes.get(j).getArrivalTime();
                                 levelOneEnd = (int) switches.get(j).switchtime;
                             }
-                       }
+                        }
                         else {
                             try {
                                 if (switches.get(j).getPrevProcess() != null) {
@@ -83,9 +85,9 @@ public class GanttChart {
 
 
                 }
-              else if (switches.get(j).getPrevProcess() == null){
-                  theGreatestTurnaroundTime = ProcessManagement.turnaroundtime(processes.get(i).getID()) + 15;
-              }
+                else if (switches.get(j).getPrevProcess() == null){
+                    theGreatestTurnaroundTime = ProcessManagement.turnaroundtime(processes.get(i).getID()) + 15;
+                }
 
                 else {
                     levelOneStart = (int) processes.get(i).getArrivalTime() ;
@@ -111,7 +113,7 @@ public class GanttChart {
             System.out.println(processes.get(i).getEndClock());
             t.addSubtask(new Task(IDs[i] , new SimpleTimePeriod((int) processes.get(i).getStartClock() , (int) processes.get(i).getEndClock())));
             level1Series.add(t);
-       }
+    }
 
 
         TaskSeriesCollection dataset = new TaskSeriesCollection();
@@ -171,7 +173,8 @@ public class GanttChart {
                     });
 
 
-                }            public void BackToPreviousScene(){
+                }            
+                public void BackToPreviousScene(){
                     frame.dispose();
                 }
 
