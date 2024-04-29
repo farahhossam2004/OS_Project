@@ -104,10 +104,13 @@ public class GanttChart {
 
                 else {
                     levelOneStart = (int) processes.get(i).getArrivalTime() ;
-                    levelOneEnd = levelOneStart  ;
+                    levelOneEnd = levelOneStart + 1 ;
                 }
             }
 
+            if (theLeastArrivalTime > 0.0){
+                theLeastArrivalTime = 0.0 ;
+            }
 
 
 
