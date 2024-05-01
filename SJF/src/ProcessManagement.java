@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+import java.util.Comparator;
 public class ProcessManagement {
 
     private static ArrayList<Process> processArray = new ArrayList<>();
@@ -64,16 +64,10 @@ public class ProcessManagement {
             // check if there any processes arrived 
             if(!readyProcesses.isEmpty())
             {
+                // Comapre arrived processes and select the process that has shortest burst time 
+                readyProcesses.sort(Comparator.comparing(Process::getBurstTime));
                 Process shortestProcess = readyProcesses.get(0); // intialize shortest process
 
-                // loop through arrived processes and select the process that has shortest burst time 
-                for(Process process : readyProcesses)
-                {
-                    if(process.getBurstTime() < shortestProcess.getBurstTime())
-                    {
-                        shortestProcess = process;
-                    }
-                }
 
                 // for the switch array -> intialize last process with shortest process at time = 0
                 if(currentSecond == 0)
@@ -196,10 +190,11 @@ public class ProcessManagement {
             for(Process process : processes){
                 totalWaitingTime += process.getWaitingTime();
             }
+            
 
             return totalWaitingTime / processes.size();
         }
-
+        
         // Average Turnaround Time Function
 
         public static double calculateAverageTurnaroundTime(){

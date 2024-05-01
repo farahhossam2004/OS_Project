@@ -164,8 +164,6 @@ public class GanttChart {
                 public void actionPerformed(ActionEvent e) {
                     Platform.runLater(() -> {
                         try {
-                            processes.clear();
-                            switches.clear();
                             BackToPreviousScene();
                         } catch (Exception ex) {
                             throw new RuntimeException(ex);

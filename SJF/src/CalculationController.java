@@ -47,9 +47,9 @@ public class CalculationController implements Initializable{
         {
             processChoiceBox.getItems().add(process.getID());
         }
-        avgWaitingLabel.setText(String.valueOf(ProcessManagement.calculateAverageWaiting()));
-        avgTurnaround.setText(String.valueOf(ProcessManagement.calculateAverageTurnaroundTime()));
-        avgResponse.setText(String.valueOf(ProcessManagement.calculateAverageResponseTime()));
+        avgWaitingLabel.setText(String.valueOf(Math.round(ProcessManagement.calculateAverageWaiting() * 100.0) / 100.0));
+        avgTurnaround.setText(String.valueOf(Math.round(ProcessManagement.calculateAverageTurnaroundTime() * 100.0) / 100.0));
+        avgResponse.setText(String.valueOf(Math.round(ProcessManagement.calculateAverageResponseTime() * 100.0) / 100.0));
         processChoiceBox.setOnAction(this::calculateTime);
     }
 
