@@ -128,7 +128,7 @@ public class ProcessManagement {
                 // if there is no ready procesess ad last process is not null 
                 if(lastProcess != null)
                 {
-                    //lastProcess.setEndClock(currentSecond); // Set endClock for the last process
+                    //lastProcess.setEndClock(lastProcess.getOriginalBurstTime() + lastProcess.getArrivalTime() ); // Set endClock for the last process
                     lastProcess = null;
                     Switcharray.add(new Switch(currentSecond, lastProcess, null));
 

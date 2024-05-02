@@ -20,6 +20,8 @@ public class GanttChart {
 
         List<Process> processes = ProcessManagement.getAllProcesses();
         List<Switch> switches  = ProcessManagement.getAllSwitch();
+
+
         // Create a task series for each level
         TaskSeries level1Series = new TaskSeries("Process execution time");
 
@@ -36,15 +38,25 @@ public class GanttChart {
             int levelOneEnd = 0 ;
 
 
+            //fixing any expected bug if the process started from the wrong point
+            if (ProcessManagement.responseTime(processes.get(i).getID()) == 0 && processes.get(i).getArrivalTime() != processes.get(i).getStartClock()){
+                processes.get(i).setStartClock(processes.get(i).getArrivalTime());
+
+            }
+
+
+
             //getting the highest turnaround time and the lowest arrival time
             int [] turnaroundTimes  = new int [processes.size()] ;
-            turnaroundTimes [i] = (int) ProcessManagement.turnaroundtime(processes.get(i).getID());
+            turnaroundTimes [i] = (int) processes.get(i).getEndClock();
             int max = turnaroundTimes[0] ;
             theGreatestTurnaroundTime = Math.max(max, turnaroundTimes [i]);
             int [] arrivalTimes  = new int [processes.size()];
-            arrivalTimes [i] = (int) processes.get(i).getArrivalTime();
+            arrivalTimes [i] = (int) processes.get(i).getStartClock();
             int min = arrivalTimes [0] ;
             theLeastArrivalTime = Math.min(min , arrivalTimes[i]);
+
+
 
 
             //checking if process arrived and served once it's arrived if it's done we serve the process until it's switch time
@@ -58,6 +70,7 @@ public class GanttChart {
                                 levelOneStart = (int) processes.get(j).getArrivalTime();
                                 levelOneEnd = (int) switches.get(j).switchtime;
                             }
+
                         }
                         else {
                             try {
@@ -90,27 +103,20 @@ public class GanttChart {
                                 if (ProcessManagement.responseTime(processes.get(i - 1).getID()) == 0 && switches.get(i - 1).getPrevProcess().getID() == processes.get(i - 1).getID()) {
                                     levelOneStart = (int) processes.get(i - 1).getArrivalTime();
                                     levelOneEnd = (int) switches.get(i - 1).switchtime;
-                                    theGreatestTurnaroundTime = ProcessManagement.turnaroundtime(processes.get(i).getID()) + 15;
-                                }
+                               }
                             }
                         }
                     }
 
 
                 }
-                else if (switches.get(j).getPrevProcess() == null){
-                    theGreatestTurnaroundTime = ProcessManagement.turnaroundtime(processes.get(i).getID()) + 15;
-                }
 
                 else {
                     levelOneStart = (int) processes.get(i).getArrivalTime() ;
-                    levelOneEnd = levelOneStart + 1 ;
+                    levelOneEnd = levelOneStart  ;
                 }
             }
 
-            if (theLeastArrivalTime > 0.0){
-                theLeastArrivalTime = 0.0 ;
-            }
 
 
 
@@ -118,9 +124,11 @@ public class GanttChart {
             if (processes.get(i).getEndClock() == 0.0) {
                 processes.get(i).setEndClock(ProcessManagement.turnaroundtime(processes.get(i).getID()) + processes.get(i).getArrivalTime());
             }
+
             if (processes.get(i).getEndClock() < processes.get(i).getStartClock()) {
                 processes.get(i).setEndClock(ProcessManagement.turnaroundtime(processes.get(i).getID()) + processes.get(i).getArrivalTime());
             }
+
 
             //Creating the first task which represents the process
             Task t = new Task(IDs[i] , new SimpleTimePeriod((int) theLeastArrivalTime , (int) theGreatestTurnaroundTime )) ;

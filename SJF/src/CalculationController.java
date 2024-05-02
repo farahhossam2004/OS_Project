@@ -69,6 +69,7 @@ public class CalculationController implements Initializable{
     public void BackToScene(ActionEvent e) throws IOException
     {
         ProcessManagement.getAllProcesses().clear();
+        ProcessManagement.getAllSwitch().clear();
         Process.setProcessCounter(0);
         Switch.setSwitchCounter(0);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./Home.fxml"));
