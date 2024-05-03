@@ -3,6 +3,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "ProcessManagement",
+            "request": "launch",
+            "mainClass": "ProcessManagement",
+            "projectName": "OS_Project_afbf7958"
+        },
+        {
+            "type": "java",
             "name": "Main",
             "request": "launch",
             "mainClass": "Main",

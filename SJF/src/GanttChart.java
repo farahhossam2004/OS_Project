@@ -125,8 +125,8 @@ public class GanttChart {
             //Creating the first task which represents the process
             Task t = new Task(IDs[i] , new SimpleTimePeriod((int) theLeastArrivalTime , (int) theGreatestTurnaroundTime )) ;
             t.addSubtask(new Task(IDs[i] , new SimpleTimePeriod(levelOneStart , levelOneEnd)));
-            System.out.println(processes.get(i).getStartClock());
-            System.out.println(processes.get(i).getEndClock());
+            //System.out.println(processes.get(i).getStartClock());
+            //System.out.println(processes.get(i).getEndClock());
             t.addSubtask(new Task(IDs[i] , new SimpleTimePeriod((int) processes.get(i).getStartClock() , (int) processes.get(i).getEndClock())));
             level1Series.add(t);
     }

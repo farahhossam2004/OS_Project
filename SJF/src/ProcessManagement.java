@@ -68,7 +68,6 @@ public class ProcessManagement {
                 readyProcesses.sort(Comparator.comparing(Process::getBurstTime));
                 Process shortestProcess = readyProcesses.get(0); // intialize shortest process
 
-
                 // for the switch array -> intialize last process with shortest process at time = 0
                 if(currentSecond == 0)
                     lastProcess = shortestProcess; 
@@ -82,7 +81,6 @@ public class ProcessManagement {
                         {
                             p.setStartTime(currentSecond);
                             p.setStartClock(currentSecond);
-
                         }
                     }
                 }

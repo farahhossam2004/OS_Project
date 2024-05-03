@@ -9,12 +9,14 @@ Button{
       'EmojiSymbols', '-apple-system', 'system-ui', 'Segoe UI', 'Roboto', 
       'Helvetica Neue', 'Noto Sans', 'sans-serif';
     -fx-font-size: 16px;
-    -fx-font-weight: 700;
+    -fx-font-weight: 800;
     -fx-line-height: 24px;
     -fx-padding: 8px 18px; /* Padding for the button */
     -fx-user-select: none; /* Prevents text selection */
     -fx-touch-action: manipulation; /* JavaFX generally manages touch internally */
     -fx-width: -fx-pref-width; /* Represents 'fit-content' */
-    -fx-border-width: 0; /* Remove border */
+    -fx-border-width: 10px; /* Remove border */
 }
+
+
 
