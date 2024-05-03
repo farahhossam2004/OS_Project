@@ -10,14 +10,22 @@ public class Process {
     double completion_time;
     double start_time = -1;
     double originalBurstTime;
-    double startClock ;
-    double endClock ;
+    double startClock = -1 ;
+    double endClock = -1;
+    
     Process(double arrival_time, double burst_time)
     {
         this.arrival_time = arrival_time;
         this.burst_time = burst_time;
         this.id = ++ProcessCounter;
         this.originalBurstTime = burst_time;
+    }
+
+    // overload constructor 
+    Process(int id , double start , double end){
+        this.id = id;
+        this.startClock=start;
+        this.endClock=end;
     }
 
     // Setters

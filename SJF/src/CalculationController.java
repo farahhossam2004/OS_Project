@@ -1,7 +1,7 @@
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -63,14 +63,22 @@ public class CalculationController implements Initializable{
 
     }
     public void ShowGanttChart (ActionEvent e){
-        GanttChart.DrawGanttChart();
+        Platform.runLater(() -> {
+        try {
+            Stage stage = new Stage(); // Create a new stage
+            SJFGanttChart ganttChart = new SJFGanttChart(); // Assuming TestGanttChart can be instantiated like this
+            ganttChart.start(stage); // Start the Gantt chart on this new stage
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    });
     }
 
     public void BackToScene(ActionEvent e) throws IOException
     {
         ProcessManagement.getAllProcesses().clear();
+        ProcessManagement.getServedProcesses().clear();
         Process.setProcessCounter(0);
-        Switch.setSwitchCounter(0);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./Home.fxml"));
         root = loader.load();
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();

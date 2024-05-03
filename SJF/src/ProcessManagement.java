@@ -3,8 +3,7 @@ import java.util.Comparator;
 public class ProcessManagement {
 
     private static ArrayList<Process> processArray = new ArrayList<>();
-    private static ArrayList<Switch> Switcharray = new ArrayList<>();
-
+    private static ArrayList<Process> servedProcessArray = new ArrayList<>();
     // -----------Delete Process-----------------
     public static int deleteProcess(int id)
     {
@@ -25,10 +24,10 @@ public class ProcessManagement {
         return processArray;
     }
 
-    //------------Get Switch Array-------------------
-    public static ArrayList<Switch> getAllSwitch()
+    //------------Get Served Array-------------------
+    public static ArrayList<Process> getServedProcesses()
     {
-        return Switcharray;
+        return servedProcessArray;
     }
 
     //---------------Add Process---------------------
@@ -56,9 +55,7 @@ public class ProcessManagement {
             for(Process process : processes)
             {
                 if(process.getArrivalTime() <= currentSecond && !readyProcesses.contains(process) && process.getBurstTime() > 0)
-                {
                     readyProcesses.add(process);
-                }
             }
 
             // check if there any processes arrived 
@@ -67,75 +64,54 @@ public class ProcessManagement {
                 // Comapre arrived processes and select the process that has shortest burst time 
                 readyProcesses.sort(Comparator.comparing(Process::getBurstTime));
                 Process shortestProcess = readyProcesses.get(0); // intialize shortest process
-
-                // for the switch array -> intialize last process with shortest process at time = 0
-                if(currentSecond == 0)
-                    lastProcess = shortestProcess; 
-
+        
                 // loop to set the start time "in the original process array" of each process if it is not set before 
                 for(Process p : processArray)
                 {
                     if(p.getID() == shortestProcess.getID())
                     {
                         if(p.getStartTime() == -1)
-                        {
                             p.setStartTime(currentSecond);
-                            p.setStartClock(currentSecond);
-                        }
                     }
+                }
+
+                if(lastProcess == null || lastProcess != shortestProcess)
+                {
+                    if(lastProcess != null)
+                    {
+                        lastProcess.setEndClock(currentSecond);
+                        servedProcessArray.add(new Process(lastProcess.getID(), lastProcess.getStartClock(), lastProcess.getEndClock()));
+                    }
+                    
+                    lastProcess = shortestProcess;
+                    lastProcess.setStartClock(currentSecond);
+                    if(shortestProcess.getStartClock() == -1)
+                        shortestProcess.setStartClock(currentSecond);
                 }
 
                 // minus 1 second from the burst time of shortest process " process being served "
                 shortestProcess.setBurstTime(shortestProcess.getBurstTime() - 1);
                 
-                // SWITCH ARRAY -> check if there is gap between two processes and the last process is null
-                if(lastProcess == null && shortestProcess !=null)
-                {
-                    Switcharray.add(new Switch(currentSecond, null, shortestProcess));
-                    lastProcess = shortestProcess;
-                    shortestProcess.setStartClock(currentSecond);
-                }
-                // else if there is no gap between the two processes and there is switch happens between them 
-                else if(lastProcess != null && shortestProcess != null && lastProcess.getID() != shortestProcess.getID() )
-                {
-                    Switcharray.add(new Switch(currentSecond, lastProcess, shortestProcess));
-                    lastProcess.setEndClock(shortestProcess.getStartClock());
-                    lastProcess = shortestProcess;
-                    shortestProcess.setStartClock(currentSecond);
-
-                }
-
                 // if the process served completely -> burst time = 0
                 if(shortestProcess.getBurstTime() <= 0)
                 {
                     for(Process p : processArray)
                     {
                         if(p.getID() == shortestProcess.getID())
-                        {
                             p.setCompletionTime(currentSecond + 1); // set when the process is totally completed
-                            p.setEndClock(p.completion_time);
-                        }
                     }
+                    shortestProcess.setEndClock(currentSecond + 1);
+                    servedProcessArray.add(new Process(shortestProcess.getID(), shortestProcess.getStartClock(), shortestProcess.getEndClock()));
 
                     readyProcesses.remove(shortestProcess);
                     servedProcesses++;
-                }
-            }
-            else
-            {
-                // if there is no ready procesess ad last process is not null 
-                if(lastProcess != null)
-                {
-                    //lastProcess.setEndClock(currentSecond); // Set endClock for the last process
                     lastProcess = null;
-                    Switcharray.add(new Switch(currentSecond, lastProcess, null));
-
-
                 }
             }
             currentSecond++;
         }
-    }
+        }
+        
 
 //================================================================
 // fn for Calculation scenes
@@ -230,8 +206,16 @@ public class ProcessManagement {
         }
 
 //================================================================
-
+    public static double CalculateTotalBurstTime(){
+        ArrayList<Process>  ProcessList = getAllProcesses();
+        double total=0;
+        for(Process p : ProcessList){
+            total = total + p.getOriginalBurstTime();
+        }
+        return total;
+    }
 }
+
 
 
 
