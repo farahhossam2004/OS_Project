@@ -39,7 +39,7 @@ public class GanttChart {
 
 
             //fixing any expected bug if the process started from the wrong point
-            if (ProcessManagement.responseTime(processes.get(i).getID()) == 0 && processes.get(i).getArrivalTime() != processes.get(i).getStartClock()){
+            if (ProcessManagement.waitingTime(processes.get(i).getID()) == 0 && processes.get(i).getArrivalTime() != processes.get(i).getStartClock() || switches.get(i).getPrevProcess() == null) {
                 processes.get(i).setStartClock(processes.get(i).getArrivalTime());
 
             }
