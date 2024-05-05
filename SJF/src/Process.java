@@ -44,12 +44,7 @@ public class Process {
     public void setEndClock (double endClock){
         this.endClock = endClock ;
     }
-    public double getStartClock (){
-        return this.startClock ;
-    }
-    public double getEndClock (){
-        return this.endClock ;
-    }
+    
 
     public void setTurnaroundTime(double turnaroundtime)
     {
@@ -124,6 +119,14 @@ public class Process {
     public int getProcessCounter()
     { 
         return this.getProcessCounter();
+    }
+
+    public double getStartClock (){
+        return this.startClock ;
+    }
+    
+    public double getEndClock (){
+        return this.endClock ;
     }
 
 }

@@ -154,7 +154,6 @@ public class ProcessManagement {
     }
 
 //=================================================================
-        //Rania Task 
 
         // Average waiting Time Function
 
@@ -165,11 +164,10 @@ public class ProcessManagement {
             for(Process process : processes){
                 totalWaitingTime += process.getWaitingTime();
             }
-            
-
             return totalWaitingTime / processes.size();
         }
         
+
         // Average Turnaround Time Function
 
         public static double calculateAverageTurnaroundTime(){
@@ -180,6 +178,7 @@ public class ProcessManagement {
             }
             return  totalTurnaroundTime / processes.size();
         }
+
 
         // Average Response Time Function
 
@@ -215,8 +214,3 @@ public class ProcessManagement {
         return total;
     }
 }
-
-
-
-
-

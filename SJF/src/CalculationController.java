@@ -62,6 +62,8 @@ public class CalculationController implements Initializable{
         waitingLabel.setText(String.valueOf(ProcessManagement.waitingTime(processID)));
 
     }
+
+    
     public void ShowGanttChart (ActionEvent e){
         Platform.runLater(() -> {
         try {

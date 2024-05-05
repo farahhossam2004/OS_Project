@@ -17,7 +17,7 @@ public class SJFGanttChart extends Application{
         // Add tasks to the chart 
         for(Process p : servedProcesses)
         {
-            addProcess(lineChart, p.getID(), p.getStartClock(), p.getEndClock(), "red");
+            addProcess(lineChart, p.getID(), p.getStartClock(), p.getEndClock());
         }
         Scene scene = new Scene(new StackPane(lineChart), 640, 480);
         stage.setScene(scene);
@@ -29,7 +29,7 @@ public class SJFGanttChart extends Application{
         CategoryAxis yAxis = new CategoryAxis();
         NumberAxis xAxis = new NumberAxis();
         xAxis.setAutoRanging(true);
-        xAxis.setUpperBound((int)ProcessManagement.CalculateTotalBurstTime()); // done
+        xAxis.setUpperBound((int)ProcessManagement.CalculateTotalBurstTime());
         
         LineChart<Number, String> lineChart = new LineChart<>(xAxis, yAxis);
         lineChart.setTitle("Shortest Job First");
@@ -39,13 +39,11 @@ public class SJFGanttChart extends Application{
         return lineChart;
     }
 
-    private void addProcess(LineChart<Number, String> lineChart, int ProcessID, double startTime , double endTime, String Color)
+    private void addProcess(LineChart<Number, String> lineChart, int ProcessID, double startTime , double endTime)
     {
         XYChart.Series<Number, String> series = new XYChart.Series<>();
         series.getData().add(new XYChart.Data<>(startTime, String.valueOf(ProcessID)));
         series.getData().add(new XYChart.Data<>(endTime, String.valueOf(ProcessID)));
-        series.setName("Process " + ProcessID);
         lineChart.getData().add(series);
-        
     }
 }
