@@ -3,17 +3,10 @@
     "configurations": [
         {
             "type": "java",
-            "name": "ProcessManagement",
-            "request": "launch",
-            "mainClass": "ProcessManagement",
-            "projectName": "OS_Project_afbf7958"
-        },
-        {
-            "type": "java",
             "name": "Main",
             "request": "launch",
             "mainClass": "Main",
-            "projectName": "SJF_915755b0",
+            "projectName": "OS_Project_c13c72d7",
             "vmArgs": "--module-path \"SJF\\javafx-sdk-22\\lib\" --add-modules javafx.controls,javafx.fxml",
             "args": ""
         }
