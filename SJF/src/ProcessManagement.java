@@ -4,19 +4,6 @@ public class ProcessManagement {
 
     private static ArrayList<Process> processArray = new ArrayList<>();
     private static ArrayList<Process> servedProcessArray = new ArrayList<>();
-    // -----------Delete Process-----------------
-    public static int deleteProcess(int id)
-    {
-        for(int i = 0; i < processArray.size(); i++)
-        {
-            if(processArray.get(i).getID() == id)
-            {
-                processArray.remove(i);
-                return 1; // Process deleted successfully
-            }
-        }
-        return -1;   // Process not found
-    }
 
     //-------------Get all the processes-------------
     public static ArrayList<Process> getAllProcesses()
